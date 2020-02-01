@@ -28,14 +28,6 @@
   width: 50%;
 }
 
-.game-object {
-    position: absolute;
-    height: 50px;
-    width: 50px;
-    background: white;
-    border: 1px solid blue;
-}
-
 *, *:before, *:after {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -71,3 +63,31 @@ body {
   margin: 0 10px;
 }
 
+
+.thingy {
+    opacity: 0
+}
+.transition-enter {
+    opacity: 0;
+}
+.transition-enter-active {
+    opacity: 1;
+    transition: opacity 200ms;
+}
+.transition-exit {
+    opacity: 1;
+}
+.transition-exit-active {
+    opacity: 0;
+    transition: opacity 200ms;
+}
+
+.game-object {
+    background-size: cover;
+    background-position: center;
+    border-radius: 5px;
+    position: absolute;
+    height: 100px;
+    width: 100px;
+    border: 1px solid blue;
+}

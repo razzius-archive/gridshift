@@ -17,4 +17,30 @@
   color: #61dafb;
 }
 
+.home-main {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+
+.home-body {
+  width: 50%;
+}
+
+.character-container {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.character-image {
+}
+
+.character-description {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 10px;
+}
 

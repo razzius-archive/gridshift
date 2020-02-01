@@ -5,29 +5,29 @@ import Character from './Character'
 let characters = [
   {
     description: 'Retired Investment Banker from New York',
-    image: ''
+    image: 'https://placebear.com/300/300'
   },
   {
     description: 'Startup Founder who owns a Tesla Cybertruck',
-    image: ''
+    image: 'https://placebear.com/300/300'
   },
   {
     description: 'Working Mom with 2 kids living in an appartment',
-    image: ''
+    image: 'https://placebear.com/300/300'
   },
   {
     description: 'High School English Teacher who rides public transit',
-    image: ''
+    image: 'https://placebear.com/300/300'
   }
 ]
 
 export default () => (
   
 
-  <div>
+  <div className="home-main">
     <h1>California Power Trail</h1>
     <h2>Choose Your Character</h2>
-    
+    <div className="home-body">
       {characters.map((character, idx) => (
         <Character
           key={idx}
@@ -35,7 +35,7 @@ export default () => (
           image={character.image}
         />
       ))}
-
+    </div>
     <Link to="/game">Start</Link>
   </div>
 )

@@ -25,7 +25,7 @@ class App extends Component {
     school: false,
     solar: false,
     store: true,
-    townEvacuationPlanForEveryone: false
+    townEvacuationPlanForEveryone: false,
     townHall: true,
     fireDisaster: true,
   }

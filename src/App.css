@@ -28,33 +28,6 @@
   width: 50%;
 }
 
-<<<<<<< HEAD
-.character-container {
-  display: flex;
-  justify-content: center;
-  padding: 20px;
-}
-
-.character-image {
-}
-
-.character-description {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 10px;
-}
-
-.game-object {
-    position: absolute;
-    height: 50px;
-    width: 50px;
-    background: white;
-    border: 1px solid blue;
-}
-
-=======
->>>>>>> 142066fca4fcdfb23772efb593235fa14eee0a4d
 *, *:before, *:after {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -90,8 +63,6 @@ body {
   align-items: center;
   margin: 0 10px;
 }
-<<<<<<< HEAD
-=======
 
 
 .thingy {
@@ -121,4 +92,3 @@ body {
     width: 100px;
     border: 1px solid blue;
 }
->>>>>>> 142066fca4fcdfb23772efb593235fa14eee0a4d

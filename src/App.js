@@ -8,6 +8,18 @@ import './App.css'
 
 class App extends Component {
 
+  state = {
+    cybertruck: true,
+    solar: true,
+    batteries: false,
+    microgrid: false,
+    firebreak: false,
+    mask: false,
+
+    wasFire: true,
+    townEvacuationPlanForEveryone: false
+  }
+
   handleCharacterSelect(e, idx) {
     console.log(idx);
   }
@@ -22,7 +34,9 @@ class App extends Component {
               <Game state={{cybertruck: true, gasVehicle: false, escapeRoute: true}}/>
             </Route>
             <Route path="/score">
-              <Scorecard />
+              <Scorecard 
+                gameState={this.state}
+              />
             </Route>
             <Route path="/">
               <Home 

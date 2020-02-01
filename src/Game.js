@@ -12,6 +12,11 @@ const UNIT_WIDTH = GAME_WIDTH / X_UNITS
 const UNIT_HEIGHT = GAME_HEIGHT / Y_UNITS
 
 const GAME_OBJECTS = {
+  neighbor: {
+    displayName: "Neighbor's House",
+    x: 1,
+    y: 2
+  },
   emptyField: {
     displayName: 'Empty Field',
     x: 2,
@@ -60,10 +65,19 @@ function gameObjectValues(name) {
   throw Error(`No game text for object '${name}'`)
 }
 
-const GameObject = ({ name, setSelected, selected }) => {
-  const values = gameObjectValues(name)
-  const displayX = values.x * UNIT_WIDTH
-  const displayY = values.y * UNIT_HEIGHT
+const GameObject = ({
+  name,
+  displayName,
+  mystery = false,
+  x,
+  y,
+  setSelected,
+  selected
+}) => {
+  const displayX = x * UNIT_WIDTH
+  const displayY = y * UNIT_HEIGHT
+
+  const imageUrl = mystery ? 'questionMark.jpg' : `${name}.jpg`
 
   return (
     <div
@@ -72,11 +86,11 @@ const GameObject = ({ name, setSelected, selected }) => {
         setSelected(name)
       }}
       className={`game-object ${name} ${selected ? 'selected' : ''}`}
-      aria-label={values.displayName}
+      aria-label={displayName}
       style={{
         left: `${displayX}px`,
         top: `${displayY}px`,
-        backgroundImage: `url(${name}.jpg)`
+        backgroundImage: `url(${imageUrl})`
       }}
     />
   )
@@ -96,14 +110,32 @@ export default class Game extends React.Component {
     const { state } = this.props
 
     const gameObj = name => {
+      const values = gameObjectValues(name)
+
       if (!this.props.state[name]) {
-        return null
+        const name = `questionMark${values.x}${values.y}`
+
+        return (
+          <GameObject
+            key={name}
+            name={name}
+            mystery
+            displayName="Unexplored"
+            x={values.x}
+            y={values.y}
+            setSelected={this.setSelected}
+            selected={name === this.state.selected}
+          />
+        )
       }
 
       return (
         <GameObject
           key={name}
           name={name}
+          displayName={values.displayName}
+          x={values.x}
+          y={values.y}
           setSelected={this.setSelected}
           selected={name === this.state.selected}
         />
@@ -119,6 +151,10 @@ export default class Game extends React.Component {
         </button>
         <div>game state: {JSON.stringify(state)}</div>
         <div className="game">
+          <div className="inventory">
+            Inventory
+            <img src="phone.jpg" className="phone" alt="phone background" />
+          </div>
           <div className="game-map">
             <CSSTransition
               in={this.state.inProp}
@@ -130,11 +166,22 @@ export default class Game extends React.Component {
             {objects}
           </div>
           <div className="active-location">
-            {this.state.selected &&
-              gameObjectValues(this.state.selected).displayName}
+            <ActiveLocation selected={this.state.selected} />
           </div>
         </div>
       </div>
     )
   }
+}
+
+const ActiveLocation = ({ selected }) => {
+  if (selected === null) {
+    return null
+  }
+
+  if (!(selected in GAME_OBJECTS)) {
+    return 'Unexplored'
+  }
+
+  return GAME_OBJECTS[selected].displayName
 }

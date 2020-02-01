@@ -40,7 +40,7 @@ body {
 }
 
 .game {
-    width: 800px;
+    width: 1000px;
     display: flex;
     background: white;
     margin: auto;
@@ -89,12 +89,12 @@ body {
 .game-object {
     background-size: cover;
     background-position: center;
+    border-radius: 30px;
     margin: 5px;
     position: absolute;
     height: 90px;
     width: 90px;
     border: 2px solid transparent;
-    /* border: 1px solid blue; */
 }
 
 .selected {
@@ -103,5 +103,21 @@ body {
 }
 
 .active-location {
+    width: 250px;
+    margin-top: 1em;
     font-size: 2em;
+}
+
+.inventory {
+    width: 150px;
+}
+
+.phone {
+    width: 200px;
+    border-radius: 50px;
+}
+
+.question-mark {
+    width: 100px;
+    height: 100px;
 }

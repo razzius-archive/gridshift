@@ -33,13 +33,14 @@ class App extends Component {
             <Route path="/game">
               <Game state={{
                 cybertruck: true,
-                gasVehicle: true,
-                escapeRoute: true,
+                gasVehicle: false,
+                escapeRoute: false,
                 house: true,
-                school: true,
-                emptyField: true,
+                school: false,
+                emptyField: false,
                 townHall: true,
                 microgrid: false,
+                neighbor: false,
               }}/>
             </Route>
             <Route path="/score">

@@ -50,6 +50,7 @@ body {
     height: 600px;
     position: relative;
 }
+
 .character-container {
   display: flex;
   justify-content: center;

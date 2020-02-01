@@ -8,6 +8,22 @@ import './App.css'
 
 class App extends Component {
 
+  state = {
+    cybertruck: true,
+    solar: true,
+    batteries: false,
+    microgrid: false,
+    firebreak: false,
+    mask: false,
+
+    wasFire: true,
+    townEvacuationPlanForEveryone: false
+  }
+
+  handleCharacterSelect(e, idx) {
+    console.log(idx);
+  }
+
   render(){
     return (
       <Router>
@@ -27,10 +43,14 @@ class App extends Component {
               }}/>
             </Route>
             <Route path="/score">
-              <Scorecard />
+              <Scorecard 
+                gameState={this.state}
+              />
             </Route>
             <Route path="/">
-              <Home />
+              <Home 
+                handleCharacterSelect={(e, idx) => this.handleCharacterSelect(e, idx)}
+              />
             </Route>
           </Switch>
         </div>

@@ -21,8 +21,9 @@ let characters = [
   }
 ]
 
-export default () => (
-  
+
+
+const Home = (props) => (
 
   <div className="home-main">
     <h1>California Power Trail</h1>
@@ -33,9 +34,12 @@ export default () => (
           key={idx}
           description={character.description}
           image={character.image}
+          handleCharacterSelect={(e) => props.handleCharacterSelect(e, idx)}
         />
       ))}
     </div>
     <Link to="/game">Start</Link>
   </div>
 )
+
+export default Home

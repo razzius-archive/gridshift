@@ -71,3 +71,19 @@ body {
     margin-top: 50px;
     position: relative
 }
+
+.character-container {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.character-image {
+}
+
+.character-description {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 10px;
+}

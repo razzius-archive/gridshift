@@ -15,7 +15,7 @@ class App extends Component {
     microgrid: false,
     firebreak: false,
     mask: false,
-
+    store: true,
     wasFire: true,
     townEvacuationPlanForEveryone: false
   }
@@ -37,10 +37,13 @@ class App extends Component {
                 escapeRoute: false,
                 house: true,
                 school: false,
+                store: true,
                 emptyField: false,
                 townHall: true,
                 microgrid: false,
                 neighbor: false,
+                axe: false,
+                foliage: false,
               }}/>
             </Route>
             <Route path="/score">

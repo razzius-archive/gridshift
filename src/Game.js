@@ -12,9 +12,19 @@ const UNIT_WIDTH = GAME_WIDTH / X_UNITS
 const UNIT_HEIGHT = GAME_HEIGHT / Y_UNITS
 
 const GAME_OBJECTS = {
+  foliage: {
+    displayName: 'Foliage',
+    x: 1,
+    y: 2
+  },
+  store: {
+    displayName: 'General Store',
+    x: 0,
+    y: 0
+  },
   neighbor: {
     displayName: "Neighbor's House",
-    x: 1,
+    x: 3,
     y: 2
   },
   emptyField: {

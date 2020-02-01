@@ -19,7 +19,7 @@ class App extends Component {
           <Link to="/">Insert home logo here</Link>
           <Switch>
             <Route path="/game">
-              <Game state={{cybertruck: true, gasVehicle: true}}/>
+              <Game state={{cybertruck: true, gasVehicle: false, escapeRoute: true}}/>
             </Route>
             <Route path="/score">
               <Scorecard />

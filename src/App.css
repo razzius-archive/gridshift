@@ -28,6 +28,7 @@
   width: 50%;
 }
 
+<<<<<<< HEAD
 .character-container {
   display: flex;
   justify-content: center;
@@ -52,6 +53,8 @@
     border: 1px solid blue;
 }
 
+=======
+>>>>>>> 142066fca4fcdfb23772efb593235fa14eee0a4d
 *, *:before, *:after {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -87,3 +90,35 @@ body {
   align-items: center;
   margin: 0 10px;
 }
+<<<<<<< HEAD
+=======
+
+
+.thingy {
+    opacity: 0
+}
+.transition-enter {
+    opacity: 0;
+}
+.transition-enter-active {
+    opacity: 1;
+    transition: opacity 200ms;
+}
+.transition-exit {
+    opacity: 1;
+}
+.transition-exit-active {
+    opacity: 0;
+    transition: opacity 200ms;
+}
+
+.game-object {
+    background-size: cover;
+    background-position: center;
+    border-radius: 5px;
+    position: absolute;
+    height: 100px;
+    width: 100px;
+    border: 1px solid blue;
+}
+>>>>>>> 142066fca4fcdfb23772efb593235fa14eee0a4d

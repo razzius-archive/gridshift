@@ -8,6 +8,10 @@ import './App.css'
 
 class App extends Component {
 
+  handleCharacterSelect(e, idx) {
+    console.log(idx);
+  }
+
   render(){
     return (
       <Router>
@@ -21,7 +25,9 @@ class App extends Component {
               <Scorecard />
             </Route>
             <Route path="/">
-              <Home />
+              <Home 
+                handleCharacterSelect={(e, idx) => this.handleCharacterSelect(e, idx)}
+              />
             </Route>
           </Switch>
         </div>

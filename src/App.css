@@ -39,13 +39,16 @@ body {
     box-sizing: border-box;
 }
 
-.game-window {
-    background: white;
+.game {
     width: 800px;
-    height: 600px;
+    display: flex;
+    background: white;
     margin: auto;
-    margin-top: 50px;
-    position: relative
+}
+.game-map {
+    width: 600px;
+    height: 600px;
+    position: relative;
 }
 .character-container {
   display: flex;
@@ -96,4 +99,8 @@ body {
 .selected {
     border: 2px solid blue;
     border-radius: 5px;
+}
+
+.active-location {
+    font-size: 2em;
 }

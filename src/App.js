@@ -23,6 +23,7 @@ class App extends Component {
                 school: true,
                 emptyField: true,
                 townHall: true,
+                microgrid: false,
               }}/>
             </Route>
             <Route path="/score">

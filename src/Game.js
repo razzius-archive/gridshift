@@ -118,15 +118,21 @@ export default class Game extends React.Component {
           make it go
         </button>
         <div>game state: {JSON.stringify(state)}</div>
-        <div className="game-window">
-          <CSSTransition
-            in={this.state.inProp}
-            timeout={5000}
-            classNames="transition"
-          >
-            <div className="thingy">transition-in and stuff</div>
-          </CSSTransition>
-          {objects}
+        <div className="game">
+          <div className="game-map">
+            <CSSTransition
+              in={this.state.inProp}
+              timeout={5000}
+              classNames="transition"
+            >
+              <div className="thingy">transition-in and stuff</div>
+            </CSSTransition>
+            {objects}
+          </div>
+          <div className="active-location">
+            {this.state.selected &&
+              gameObjectValues(this.state.selected).displayName}
+          </div>
         </div>
       </div>
     )

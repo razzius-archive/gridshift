@@ -30,12 +30,14 @@ const Home = (props) => (
     <h2>Choose Your Character</h2>
     <div className="home-body">
       {characters.map((character, idx) => (
-        <Character
-          key={idx}
-          description={character.description}
-          image={character.image}
-          handleCharacterSelect={(e) => props.handleCharacterSelect(e, idx)}
-        />
+        <Link to="/game">
+          <Character
+            key={idx}
+            description={character.description}
+            image={character.image}
+            handleCharacterSelect={(e) => props.handleCharacterSelect(e, idx)}
+          />
+        </Link>
       ))}
     </div>
     <Link to="/game">Start</Link>

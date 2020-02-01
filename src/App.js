@@ -16,7 +16,7 @@ function App() {
             <Select />
           </Route>
           <Route path="/game">
-            <Game />
+            <Game state={{cybertruck: true, gasVehicle: true}}/>
           </Route>
           <Route path="/">
             <Home />

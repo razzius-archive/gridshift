@@ -1,5 +1,4 @@
 import React from 'react'
-import './App.css'
 
 const Character = ({description, image}) => {
   return (

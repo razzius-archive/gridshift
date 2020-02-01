@@ -26,10 +26,12 @@ export default (props) => {
             </ul>
 
             <div align="left">Food</div>
-            <li>{props.gameState.hadNonPerishableFood ? "Your family had canned goods and could eat." : "Your food spoiled.  Your family went to bed hungry each night."}</li>
+            {props.gameState.hadNonPerishableFood ? "Your family had canned goods and could eat." : "Your food spoiled.  Your family went to bed hungry each night."}
 
             <div align="left">Health Impacts</div>
-            {props.gameState.hadMask && props.gameState.wasFire ? "Your particulate mask helped keep you healthy from smoke exposure." : "No medical problems came up."}
+            <ul>
+              <li>{props.gameState.hadMask && props.gameState.wasFire ? "Your particulate mask helped keep you healthy from smoke exposure." : "No medical problems came up."}</li>
+            </ul>
 
             <div align="left">Your community</div>
             <ul>

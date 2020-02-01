@@ -28,6 +28,12 @@
   width: 50%;
 }
 
+.scorecard {
+    width: 600px;
+    margin: auto;
+    text-align: left;
+}
+
 /* *, *:before, *:after { */
 /*     -moz-box-sizing: border-box; */
 /*     -webkit-box-sizing: border-box; */

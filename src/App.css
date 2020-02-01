@@ -44,3 +44,30 @@
   margin: 0 10px;
 }
 
+.game-object {
+    position: absolute;
+    height: 50px;
+    width: 50px;
+    background: white;
+    border: 1px solid blue;
+}
+
+*, *:before, *:after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+body {
+    background: lightgray;
+    box-sizing: border-box;
+}
+
+.game-window {
+    background: white;
+    width: 800px;
+    height: 600px;
+    margin: auto;
+    margin-top: 50px;
+    position: relative
+}

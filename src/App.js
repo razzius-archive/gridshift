@@ -14,7 +14,7 @@ class App extends Component {
           <Link to="/">Insert home logo here</Link>
           <Switch>
             <Route path="/game">
-              <Game />
+              <Game state={{cybertruck: true, gasVehicle: true}}/>
             </Route>
             <Route path="/">
               <Home />

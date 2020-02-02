@@ -10,27 +10,53 @@ const Y_UNITS = 6
 const UNIT_WIDTH = GAME_WIDTH / X_UNITS
 const UNIT_HEIGHT = GAME_HEIGHT / Y_UNITS
 
+const DISASTER_TIME = 10
+
+const DISPLAY = 'DISPLAY'
+const UNEXPLORED = 'UNEXPLORED'
+const HIDE = 'HIDE'
+
 const GAME_OBJECTS = {
   foliage: {
+    display(state) {
+      return state.foliage ? DISPLAY : UNEXPLORED
+    },
     displayName: 'Foliage',
     x: 1,
     y: 1,
     actions(state) {
+      const trimOption = state.axe
+        ? [
+            {
+              name: 'Trim foliage with axe',
+              cost: 0,
+              time: 2
+            }
+          ]
+        : []
+
       return [
         {
-          name: 'Trim Foliage'
+          name: 'Hire contractor to trim',
+          cost: 500,
+          time: 0
         },
-        {
-          name: 'Hire contractor to trim'
-        }
+        ...trimOption
       ]
     }
   },
   store: {
+    display(state) {
+      return DISPLAY
+    },
     displayName: 'General Store',
     x: 0,
     y: 0,
     actions(state) {
+      if (state.disaster) {
+        return []
+      }
+
       return [
         {
           name: 'Buy Axe'
@@ -39,6 +65,9 @@ const GAME_OBJECTS = {
     }
   },
   neighbor: {
+    display(state) {
+      return state.neighbor ? DISPLAY : UNEXPLORED
+    },
     displayName: "Neighbor's House",
     x: 3,
     y: 1,
@@ -51,6 +80,9 @@ const GAME_OBJECTS = {
     }
   },
   emptyField: {
+    display(state) {
+      return state.emptyField ? DISPLAY : UNEXPLORED
+    },
     displayName: 'Empty Field',
     x: 2,
     y: 3,
@@ -63,6 +95,9 @@ const GAME_OBJECTS = {
     }
   },
   school: {
+    display(state) {
+      return state.school ? DISPLAY : UNEXPLORED
+    },
     displayName: 'School',
     x: 3,
     y: 3,
@@ -71,6 +106,9 @@ const GAME_OBJECTS = {
     }
   },
   townHall: {
+    display(state) {
+      return DISPLAY
+    },
     displayName: 'Town Hall',
     x: 4,
     y: 0,
@@ -86,6 +124,9 @@ const GAME_OBJECTS = {
     }
   },
   cybertruck: {
+    display(state) {
+      return state.cybertruck ? DISPLAY : HIDE
+    },
     displayName: 'Tesla Cybertruck™',
     x: 2,
     y: 2,
@@ -94,6 +135,9 @@ const GAME_OBJECTS = {
     }
   },
   house: {
+    display() {
+      return DISPLAY
+    },
     displayName: 'Your House',
     x: 2,
     y: 1,
@@ -119,6 +163,9 @@ const GAME_OBJECTS = {
   //   actions: []
   // },
   escapeRoute: {
+    display(state) {
+      return state.escapeRoute ? DISPLAY : HIDE
+    },
     displayName: 'Escape Route',
     x: 4,
     y: 3,
@@ -178,17 +225,22 @@ export default class Game extends React.Component {
   }
 
   handleAction = ({ action, name, x, y }) => {
+    const { state } = this.props
+    const { time, money } = state
     if (action === 'explore') {
-      this.props.updateState({ ...this.state, [name]: true })
+      this.props.updateState({ [name]: true, time: time - 1 })
       this.setState({ selected: { name, x, y, mystery: false } })
-      console.log(name)
+      if (time > DISASTER_TIME) {
+        this.props.updateState({ disaster: true })
+      }
     } else {
-      console.log('did action')
-      console.log(action)
+      const newMoney = money - (action.cost == null ? 0 : action.cost)
+      this.props.updateState({ time: time - 1, money: newMoney })
     }
   }
 
   render() {
+    const { state } = this.props
     const gameObj = name => {
       const values = gameObjectValues(name)
 
@@ -197,7 +249,10 @@ export default class Game extends React.Component {
         this.state.selected.x === values.x &&
         this.state.selected.y === values.y
 
-      if (!this.props.state[name]) {
+      const display = values.display(state)
+      if (display === HIDE) {
+        return null
+      } else if (display === UNEXPLORED) {
         return (
           <GameObject
             key={name}
@@ -233,10 +288,14 @@ export default class Game extends React.Component {
           <div className="inventory">
             Inventory
             <img src="phone.jpg" className="phone" alt="phone background" />
+            <p>Time: {state.time}</p>
+            <p>Money: {state.money}</p>
+            <p>{state.axe && 'Axe'}</p>
           </div>
           <div className="game-map">
             <div className="thingy">transition-in and stuff</div>
             {objects}
+            {this.state.disaster && <gameObj name="fire" />}
           </div>
           <div className="active-location">
             <ActiveLocation
@@ -281,7 +340,7 @@ const ActiveLocation = ({ selected, handleAction }) => {
       {values.actions({}).map(action => {
         return (
           <div key={action.name}>
-            <button onClick={() => handleAction({ name, x, y })}>
+            <button onClick={() => handleAction({ action, name, x, y })}>
               {action.name}
             </button>
           </div>

@@ -13,8 +13,10 @@ class App extends Component {
     batteries: false,
     campingGear: false,
     cybertruck: false,
+    disaster: true,
     emptyField: false,
     escapeRoute: false,
+    fireDisaster: true,
     firebreak: false,
     foliage: false,
     gasVehicle: false,
@@ -22,12 +24,14 @@ class App extends Component {
     mask: false,
     microgrid: false,
     neighbor: false,
+    phoneBattery: 8,
     school: false,
     solar: false,
     store: true,
+    time: 10,
+    money: 5000,
     townEvacuationPlanForEveryone: false,
     townHall: true,
-    fireDisaster: true,
   }
 
   handleCharacterSelect(e, idx) {
@@ -36,28 +40,28 @@ class App extends Component {
         // Old Rich
         let oldRichState = {...this.state}
         oldRichState.mercedes=true
-        oldRichState.money = 100
+        oldRichState.money = 100000
         this.setState(oldRichState)
         break
       case 1:
         // Young Rich
         let youngRichState = {...this.state}
         youngRichState.cybertruck=true
-        youngRichState.money = 75
+        youngRichState.money = 50000
         this.setState(youngRichState)
         break
       case 2:
         // Young Poor
         let youngPoorState = {...this.state}
         youngPoorState.minivan = true
-        youngPoorState.money = 50
+        youngPoorState.money = 2000
         youngPoorState.neighbors = true
         this.setState(youngPoorState)
         break
       case 3:
         // Old Poor
         let oldPoorState = {...this.state}
-        oldPoorState.money = 50
+        oldPoorState.money = 4000
         oldPoorState.neighbors = true
         oldPoorState.axe = true
         this.setState(oldPoorState)
@@ -71,7 +75,11 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <Link to="/">Insert home logo here</Link>
+          <div>
+            <Link to="/">
+              <img src="/simGriddy.png" alt="Sim Griddy Logo"/>
+            </Link>
+          </div>
           <Switch>
             <Route path="/game">
               <Game state={this.state} updateState={(state) => this.setState(state)}/>

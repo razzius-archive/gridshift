@@ -52,40 +52,28 @@ const Home = (props) => (
             <div className="col-lg-6">
               <div className="row pt-5">
                 <div className="col-md-6">
-                  <div className="card">
+                  <div className="card mb-4 p-2">
                     <div className="card-body">
-                      <div>
-                        <img src="./assets/img/disaster.png" alt="disaster" height="50" width="50" />
-                      </div>
                       <h5 className="h3">Disaster</h5>
                       <p>Earthquakes, wildfires, hurricanes, tornadoes and more public safety threats.</p>
                     </div>
                   </div>
-                  <div className="card">
+                  <div className="card mb-4 p-2">
                     <div className="card-body">
-                      <div>
-                        <img src="./assets/img/energy.png" alt="energy" height="50" width="50" />
-                      </div>
                       <h5 className="h3">Energy</h5>
                       <p>Energy solutions to restore electicity during power outages, such as microgrids and generators.</p>
                     </div>
                   </div>
                 </div>
                 <div className="col-md-6 pt-lg-5 pt-4">
-                  <div className="card mb-4">
+                  <div className="card mb-4 p-2">
                     <div className="card-body">
-                      <div>
-                        <img src="./assets/img/tradeoffs.png" alt="tradeoffs" height="50" width="50" />
-                      </div>
                       <h5 className="h3">Tradeoffs</h5>
                       <p>From simple to complex, you make choices for praparing for and enduring crisis.</p>
                     </div>
                   </div>
-                  <div className="card mb-4">
+                  <div className="card mb-4 p-2">
                     <div className="card-body">
-                      <div>
-                        <img src="./assets/img/resilience.png" alt="resilience" height="50" width="50" />
-                      </div>
                       <h5 className="h3">Resilience</h5>
                       <p>See how you score in suriving and helping your community.</p>
                     </div>
@@ -106,7 +94,7 @@ const Home = (props) => (
       <div className="container">
         <div className="row justify-content-center text-center">
           <div className="col-md-8">
-            <h2 className="display-3">Choose your character</h2>
+            <h2 className="display-3 mt-5">Choose your character</h2>
             <p className="lead">
               Learn how to prepare for when natural disasters causes 
               power outages through an interactive game. Each character 
@@ -119,72 +107,69 @@ const Home = (props) => (
     </section>
     <section className="section section-lg pt-lg-0 mt--7">
       <div className="container">
-        <div className="row justify-content-center">
+        <div className="row justify-content-center mb-6">
           <div className="col-lg-12">
-            <div className="row">
+            <div className="row mb-5">
               <div className="col-lg-3">
-                <div className="card card-lift--hover shadow border-0" onClick={(e) => props.handleCharacterSelect(e, 0)}>
-                  <div className="card-body py-5">
-                    <div>
-                      <img src="./assets/img/moneybags.png" alt="moneybages" height="50" width="50" />
-                    </div>
-                    <h4 className="h3 text-primary text-uppercase">Money Bags</h4>
-                    <p className="description mt-3">A retired, widowed investment banker from New York.</p>
-                    <div>
-                      <span className="badge badge-pill badge-primary">Mansion</span>
-                      <span className="badge badge-pill badge-primary">Mercedes-Benz</span>
-                      <span className="badge badge-pill badge-primary">Recluse</span>
+                <Link to='/game'>
+                  <div className="card card-lift--hover shadow border-0" onClick={(e) => props.handleCharacterSelect(e, 0)}>
+                    <div className="card-body py-5">
+                     
+                      <h4 className="h3 text-primary text-uppercase">Money Bags</h4>
+                      <p className="description mt-3">A retired investment banker from New York.</p>
+                      <div>
+                        <span className="badge badge-pill badge-primary">Mansion</span>
+                        <span className="badge badge-pill badge-primary">Mercedes-Benz</span>
+                        <span className="badge badge-pill badge-primary">Recluse</span>
+                      </div>
                     </div>
                   </div>
-                </div>
+                </Link>
               </div>
               <div className="col-lg-3">
-                <div className="card card-lift--hover shadow border-0" onClick={(e) => props.handleCharacterSelect(e, 2)}>
-                  <div className="card-body py-5">
-                    <div>
-                      <img src="./assets/img/mamabear.png" alt="mamabear" height="50" width="50" />
-                    </div>
-                    <h4 className="h3 text-success text-uppercase">Mama Bear</h4>
-                    <p className="description mt-3">Working mom with two kids and two minimum wage jobs.</p>
-                    <div>
-                      <span className="badge badge-pill badge-success">Multi-family Apartment</span>
-                      <span className="badge badge-pill badge-success">Minivan</span>
-                      <span className="badge badge-pill badge-success">Invovled</span>
+                <Link to='/game'>
+                  <div className="card card-lift--hover shadow border-0" onClick={(e) => props.handleCharacterSelect(e, 2)}>
+                    <div className="card-body py-5">
+                      <h4 className="h3 text-success text-uppercase">Mama Bear</h4>
+                      <p className="description mt-3">Working mom with two kids and two minimum wage jobs.</p>
+                      <div>
+                        <span className="badge badge-pill badge-success">Multi-family Apartment</span>
+                        <span className="badge badge-pill badge-success">Minivan</span>
+                        <span className="badge badge-pill badge-success">Invovled</span>
+                      </div>
                     </div>
                   </div>
-                </div>
+                </Link>
               </div>
               <div className="col-lg-3">
-                <div className="card card-lift--hover shadow border-0" onClick={(e) => props.handleCharacterSelect(e, 1)}>
-                  <div className="card-body py-5">
-                    <div>
-                      <img src="./assets/img/techie.png" alt="techie" height="50" width="50" />
-                    </div>
-                    <h4 className="h3 text-warning text-uppercase">The Techie</h4>
-                    <p className="description mt-3">Startup founder with successful exit.</p>
-                    <div>
-                      <span className="badge badge-pill badge-warning">Penthouse</span>
-                      <span className="badge badge-pill badge-warning">Tesla Cyber Truck</span>
-                      <span className="badge badge-pill badge-warning">Secluded</span>
+                <Link to='/game'>
+                  <div className="card card-lift--hover shadow border-0" onClick={(e) => props.handleCharacterSelect(e, 1)}>
+                    <div className="card-body py-5">
+                      <h4 className="h3 text-warning text-uppercase">The Techie</h4>
+                      <p className="description mt-3">Startup founder with successful exit.</p>
+                      <div>
+                        <span className="badge badge-pill badge-warning">Penthouse</span>
+                        <span className="badge badge-pill badge-warning">Tesla Cyber Truck</span>
+                        <span className="badge badge-pill badge-warning">Secluded</span>
+                      </div>
                     </div>
                   </div>
-                </div>
+                </Link>
               </div>
               <div className="col-lg-3">
-                <div className="card card-lift--hover shadow border-0" onClick={(e) => props.handleCharacterSelect(e, 3)}>
-                  <div className="card-body py-5">
-                    <div>
-                      <img src="./assets/img/teacher.png" alt="teacher" height="50" width="50" />
-                    </div>
-                    <h4 className="h3 text-warning text-uppercase">Mr. Adams</h4>
-                    <p className="description mt-3">Elderly High school english teacher.</p>
-                    <div>
-                      <span className="badge badge-pill badge-warning">Townhouse</span>
-                      <span className="badge badge-pill badge-warning">Public Transit</span>
-                      <span className="badge badge-pill badge-warning">Beloved</span>
+                <Link to='/game'>
+                  <div className="card card-lift--hover shadow border-0" onClick={(e) => props.handleCharacterSelect(e, 3)}>
+                    <div className="card-body py-5">
+                      <h4 className="h3 text-warning text-uppercase">Mr. Adams</h4>
+                      <p className="description mt-3">Elderly High school english teacher.</p>
+                      <div>
+                        <span className="badge badge-pill badge-warning">Townhouse</span>
+                        <span className="badge badge-pill badge-warning">Public Transit</span>
+                        <span className="badge badge-pill badge-warning">Beloved</span>
+                      </div>
                     </div>
                   </div>
-                </div>
+                </Link>
               </div>
             </div>
           </div>

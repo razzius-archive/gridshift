@@ -22,7 +22,7 @@ export default props => {
     (props.gameState.gasolinecar && hadPowerInTown) ||
     props.gameState.townEvacuationPlanForEveryone
   const homeBurntDown = !props.gameState.fireBreak
-  const knewSchoolCouldSurvive = props.gameState.School
+  const knewSchoolCouldSurvive = props.gameState.school
 
   return (
     <div className="scorecard">

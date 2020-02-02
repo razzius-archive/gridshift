@@ -74,7 +74,7 @@ class App extends Component {
           <Link to="/">Insert home logo here</Link>
           <Switch>
             <Route path="/game">
-              <Game state={this.state}/>
+              <Game state={this.state} updateState={(state) => this.setState(state)}/>
             </Route>
             <Route path="/score">
               <Scorecard 

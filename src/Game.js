@@ -10,8 +10,6 @@ const Y_UNITS = 6
 const UNIT_WIDTH = GAME_WIDTH / X_UNITS
 const UNIT_HEIGHT = GAME_HEIGHT / Y_UNITS
 
-const DISASTER_TIME = 10
-
 const DISPLAY = 'DISPLAY'
 const UNEXPLORED = 'UNEXPLORED'
 const HIDE = 'HIDE'
@@ -172,6 +170,17 @@ const GAME_OBJECTS = {
     actions() {
       return []
     }
+  },
+  fire: {
+    display(state) {
+      return state.disaster ? DISPLAY : HIDE
+    },
+    displayName: 'Fire!!!',
+    x: 0,
+    y: 0,
+    actions() {
+      return []
+    }
   }
 }
 
@@ -230,8 +239,8 @@ export default class Game extends React.Component {
     if (action === 'explore') {
       this.props.updateState({ [name]: true, time: time - 1 })
       this.setState({ selected: { name, x, y, mystery: false } })
-      if (time > DISASTER_TIME) {
-        this.props.updateState({ disaster: true })
+      if (time <= 0) {
+        this.props.updateState({ disaster: true, time: 5 })
       }
     } else {
       const newMoney = money - (action.cost == null ? 0 : action.cost)

@@ -9,17 +9,25 @@ import './App.css'
 class App extends Component {
 
   state = {
-
-    cybertruck: false,
-    solar: false,
-    batteries: false,
-    microgrid: false,
-    firebreak: false,
-    mask: false,
-    campingGear: false,
     axe: false,
-    wasFire: true,
-    townEvacuationPlanForEveryone: false
+    batteries: false,
+    campingGear: false,
+    cybertruck: false,
+    emptyField: false,
+    escapeRoute: false,
+    firebreak: false,
+    foliage: false,
+    gasVehicle: false,
+    house: true,
+    mask: false,
+    microgrid: false,
+    neighbor: false,
+    school: false,
+    solar: false,
+    store: true,
+    townEvacuationPlanForEveryone: false,
+    townHall: true,
+    fireDisaster: true,
   }
 
   handleCharacterSelect(e, idx) {

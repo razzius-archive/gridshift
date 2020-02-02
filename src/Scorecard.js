@@ -15,7 +15,8 @@ export default (props) => {
 
   const hadPowerAtHome = props.gameState.solar && props.gameState.batteries;
   const hadPowerInTown = props.gameState.microgrid;
-  const couldEvacuate = props.gameState.escapeRoute && (props.gameState.cybertruck && (hadPowerAtHome || hadPowerInTown)) || (props.gameState.gasolinecar && hadPowerInTown) || props.gameState.townEvacuationPlanForEveryone;
+  //const couldEvacuate = props.gameState.escapeRoute && (props.gameState.cybertruck && (hadPowerAtHome || hadPowerInTown)) || (props.gameState.gasolinecar && hadPowerInTown) || props.gameState.townEvacuationPlanForEveryone;
+  const couldEvacuate = (props.gameState.cybertruck && (hadPowerAtHome || hadPowerInTown)) || (props.gameState.gasolinecar && hadPowerInTown) || props.gameState.townEvacuationPlanForEveryone;
   const homeBurntDown = !props.gameState.firebreak;
   const knewSchoolCouldSurvive = props.gameState.School;
 
@@ -29,14 +30,13 @@ export default (props) => {
                     "Your home had power.  Your solar panels provided power, because you bought batteries as a backup energy storage device." :
                     "Your home has solar, but doesn't have batteries!  Solar needs batteries to work in a power outage.  It's great for the environment when you have power, but useless in a power outage unless you have energy storage.") :
                     "Your home didn't have any power."}</li>
-                  {props.gameState.fireDisaster ?
-                   (props.gameState.firebreak ? <li>Your home was protected from the fire.</li> :
+                  {props.gameState.firebreak ? <li>Your home was protected from the fire.</li> :
                       props.gameState.campingGear ? <li>Your home burnt down during the fire, but your camping gear provided a place to live</li> :
                           knewSchoolCouldSurvive ? <li>Your home burnt down, but you knew you could stay at the school as an emergency shelter.</li> :
-                              <li>Your home burnt down and you have no place to stay.</li>) :
-                    ""}
-                  {props.gameState.fireDisaster && couldEvacuate ? <li>Your family could leave town if the fire was out of control.</li> :
-                     props.gameState.fireDisaster ? <li>Your family could not evacuate the town.  The gas station requires power to pump gas, and electric cars require home generation or a microgrid.</li> : ""}
+                              <li>Your home burnt down and you have no place to stay.</li>
+                  }
+                  {couldEvacuate ? <li>Your family could leave town if the fire was out of control.</li> :
+                     <li>Your family could not evacuate the town.  The gas station requires power to pump gas, and electric cars require home generation or a microgrid.</li> : ""}
             </ul>
 
             <div align="left">Food</div>

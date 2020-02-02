@@ -63,7 +63,6 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <Link to="/">Insert home logo here</Link>
           <Switch>
             <Route path="/game">
               <Game state={this.state}/>

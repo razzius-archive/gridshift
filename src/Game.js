@@ -15,8 +15,22 @@ const UNEXPLORED = 'UNEXPLORED'
 const HIDE = 'HIDE'
 
 const GAME_OBJECTS = {
+  trimmedFoliage: {
+    display(state) {
+      return state.fireBreak ? DISPLAY : HIDE
+    },
+    displayName: 'Firebreak',
+    x: 1,
+    y: 1,
+    actions() {
+      return []
+    }
+  },
   foliage: {
     display(state) {
+      if (state.fireBreak) {
+        return HIDE
+      }
       return state.foliage ? DISPLAY : UNEXPLORED
     },
     displayName: 'Foliage',
@@ -236,20 +250,33 @@ export default class Game extends React.Component {
   handleAction = ({ action, name, x, y }) => {
     const { state } = this.props
     const { time, money } = state
+
+    let newTime = state.time
+    let newMoney = state.money
+    let stateUpdate = {}
     if (action === 'explore') {
-      this.props.updateState({ [name]: true, time: time - 1 })
+      newTime = time - 1
+      stateUpdate = { [name]: true }
       this.setState({ selected: { name, x, y, mystery: false } })
-      if (time <= 0) {
-        this.props.updateState({ disaster: true, time: 5 })
-      }
+    } else if (
+      ['Trim foliage with axe', 'Hire contractor to trim'].includes(action)
+    ) {
+      stateUpdate = { ...stateUpdate, fireBreak: true }
     } else {
-      const newMoney = money - (action.cost == null ? 0 : action.cost)
-      this.props.updateState({ time: time - 1, money: newMoney })
+      newMoney = money - (action.cost == null ? 0 : action.cost)
+      newTime = time - (action.time == null ? 1 : action.time)
     }
+
     if (state.disaster && time <= 0) {
       alert("Time's up! Let's see how you did.")
       window.location = '/score'
+      return
     }
+    if (time <= 0) {
+      this.props.updateState({ disaster: true, time: 5 })
+    }
+
+    this.props.updateState({ time: newTime, money: newMoney, ...stateUpdate })
   }
 
   render() {
@@ -309,6 +336,7 @@ export default class Game extends React.Component {
             <div className="thingy">transition-in and stuff</div>
             {objects}
             {this.state.disaster && <gameObj name="fire" />}
+            {this.state.trimmedFoliage && <gameObj name="trimmedFoliage" />}
           </div>
           <div className="active-location">
             <ActiveLocation

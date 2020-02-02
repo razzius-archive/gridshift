@@ -16,7 +16,7 @@ export default (props) => {
   const hadPowerAtHome = props.gameState.solar && props.gameState.batteries;
   const hadPowerInTown = props.gameState.microgrid;
   const couldEvacuate = props.gameState.escapeRoute && (props.gameState.cybertruck && (hadPowerAtHome || hadPowerInTown)) || (props.gameState.gasolinecar && hadPowerInTown) || props.gameState.townEvacuationPlanForEveryone;
-  const homeBurntDown = props.gameState.fireDisaster && !props.gameState.firebreak;
+  const homeBurntDown = !props.gameState.firebreak;
   const knewSchoolCouldSurvive = props.gameState.School;
 
   return (

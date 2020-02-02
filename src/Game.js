@@ -94,13 +94,14 @@ const GAME_OBJECTS = {
     x: 0,
     y: 0,
     actions(state) {
-      if (state.disaster) {
+      if (state.disaster || state.axe) {
         return []
       }
 
       return [
         {
-          name: 'Buy Axe'
+          name: 'Buy axe',
+          cost: 20
         }
       ]
     }
@@ -294,6 +295,8 @@ export default class Game extends React.Component {
       stateUpdate = { ...stateUpdate, microgrid: true }
     } else if (action.name === 'Buy solar') {
       stateUpdate = { ...stateUpdate, solar: true }
+    } else if (action.name === 'Buy axe') {
+      stateUpdate = { ...stateUpdate, axe: true }
     } else if (action.name === 'Buy battery') {
       stateUpdate = { ...stateUpdate, battery: true }
     } else if (action.name === 'Attend crisis preparedness presentation') {

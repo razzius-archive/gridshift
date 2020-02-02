@@ -36,7 +36,7 @@ export default (props) => {
                               <li>Your home burnt down and you have no place to stay.</li>
                   }
                   {couldEvacuate ? <li>Your family could leave town if the fire was out of control.</li> :
-                     <li>Your family could not evacuate the town.  The gas station requires power to pump gas, and electric cars require home generation or a microgrid.</li> : ""}
+                     <li>Your family could not evacuate the town.  The gas station requires power to pump gas, and electric cars require home generation or a microgrid.</li>}
             </ul>
 
             <div align="left">Food</div>

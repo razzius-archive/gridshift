@@ -59,6 +59,10 @@ const GAME_OBJECTS = {
     x: 1,
     y: 1,
     actions(state) {
+      if (state.fireBreak) {
+        return []
+      }
+
       const trimOption = state.axe
         ? [
             {
@@ -292,6 +296,8 @@ export default class Game extends React.Component {
       stateUpdate = { ...stateUpdate, solar: true }
     } else if (action.name === 'Buy battery') {
       stateUpdate = { ...stateUpdate, battery: true }
+    } else if (action.name === 'Attend crisis preparedness presentation') {
+      stateUpdate = { ...stateUpdate, escapeRoute: true }
     }
     newMoney = money - (action.cost == null ? 0 : action.cost)
     newTime = time - (action.time == null ? 1 : action.time)

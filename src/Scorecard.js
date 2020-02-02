@@ -10,7 +10,7 @@ export default props => {
     props.gameState.solar = true;
     props.gameState.batteries = true;
     props.gameState.cybertruck = true;
-    props.gameState.firebreak = true;
+    props.gameState.fireBreak = true;
     */
 
   const hadPowerAtHome = props.gameState.solar && props.gameState.batteries
@@ -43,7 +43,7 @@ export default props => {
             : "Your home didn't have any power."}
         </li>
         {props.gameState.disaster ? (
-          props.gameState.firebreak ? (
+          props.gameState.fireBreak ? (
             <li>Your home was protected from the fire.</li>
           ) : props.gameState.campingGear ? (
             <li>

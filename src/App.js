@@ -18,7 +18,7 @@ class App extends Component {
     emptyField: false,
     escapeRoute: false,
     fireDisaster: true,
-    firebreak: false,
+    fireBreak: false,
     foliage: false,
     gasVehicle: false,
     house: true,

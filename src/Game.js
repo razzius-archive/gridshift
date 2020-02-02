@@ -15,6 +15,17 @@ const UNEXPLORED = 'UNEXPLORED'
 const HIDE = 'HIDE'
 
 const GAME_OBJECTS = {
+  fire: {
+    display(state) {
+      return state.disaster ? DISPLAY : HIDE
+    },
+    displayName: 'Fire',
+    x: 0,
+    y: 0,
+    actions() {
+      return []
+    }
+  },
   trimmedFoliage: {
     display(state) {
       return state.fireBreak ? DISPLAY : HIDE
@@ -125,13 +136,21 @@ const GAME_OBJECTS = {
     x: 4,
     y: 0,
     actions(state) {
+      const microgridAction = state.emptyField
+        ? [
+            {
+              name: 'Petition for City Microgrid'
+            }
+          ]
+        : []
+      console.log(microgridAction)
+      console.log(state)
+
       return [
         {
           name: 'Attend crisis preparedness presentation'
         },
-        {
-          name: 'Petition for City Microgrid'
-        }
+        ...microgridAction
       ]
     }
   },
@@ -181,17 +200,6 @@ const GAME_OBJECTS = {
     displayName: 'Escape Route',
     x: 4,
     y: 3,
-    actions() {
-      return []
-    }
-  },
-  fire: {
-    display(state) {
-      return state.disaster ? DISPLAY : HIDE
-    },
-    displayName: 'Fire!!!',
-    x: 0,
-    y: 0,
     actions() {
       return []
     }
@@ -259,9 +267,11 @@ export default class Game extends React.Component {
       stateUpdate = { [name]: true }
       this.setState({ selected: { name, x, y, mystery: false } })
     } else if (
-      ['Trim foliage with axe', 'Hire contractor to trim'].includes(action)
+      ['Trim foliage with axe', 'Hire contractor to trim'].includes(action.name)
     ) {
       stateUpdate = { ...stateUpdate, fireBreak: true }
+    } else if (action.name === 'Petition for City Microgrid') {
+      stateUpdate = { ...stateUpdate, microgrid: true }
     } else {
       newMoney = money - (action.cost == null ? 0 : action.cost)
       newTime = time - (action.time == null ? 1 : action.time)
@@ -274,6 +284,7 @@ export default class Game extends React.Component {
     }
     if (time <= 0) {
       this.props.updateState({ disaster: true, time: 5 })
+      return
     }
 
     this.props.updateState({ time: newTime, money: newMoney, ...stateUpdate })
@@ -335,13 +346,12 @@ export default class Game extends React.Component {
           <div className="game-map">
             <div className="thingy">transition-in and stuff</div>
             {objects}
-            {this.state.disaster && <gameObj name="fire" />}
-            {this.state.trimmedFoliage && <gameObj name="trimmedFoliage" />}
           </div>
           <div className="active-location">
             <ActiveLocation
               selected={this.state.selected}
               handleAction={this.handleAction}
+              state={this.props.state}
             />
           </div>
         </div>
@@ -350,7 +360,7 @@ export default class Game extends React.Component {
   }
 }
 
-const ActiveLocation = ({ selected, handleAction }) => {
+const ActiveLocation = ({ selected, handleAction, state }) => {
   if (selected === null) {
     return null
   }
@@ -378,7 +388,7 @@ const ActiveLocation = ({ selected, handleAction }) => {
   return (
     <div>
       <h3>{values.displayName}</h3>
-      {values.actions({}).map(action => {
+      {values.actions(state).map(action => {
         return (
           <div key={action.name}>
             <button onClick={() => handleAction({ action, name, x, y })}>

@@ -294,7 +294,7 @@ export default class Game extends React.Component {
 
     if (state.disaster && time <= 1) {
       alert("Time's up! Let's see how you did.")
-      window.location = '/score'
+      this.props.updateState({ done: true })
       return
     }
     if (time <= 1) {

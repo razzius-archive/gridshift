@@ -9,6 +9,7 @@ import './App.css'
 class App extends Component {
 
   state = {
+    done: false,
     axe: false,
     batteries: false,
     campingGear: false,
@@ -72,6 +73,10 @@ class App extends Component {
   }
 
   render(){
+    if (this.state.done) {
+      return <Scorecard gameState={this.state} />
+    }
+
     return (
       <Router>
         <div className="App">

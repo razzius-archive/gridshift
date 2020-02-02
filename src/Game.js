@@ -15,6 +15,17 @@ const UNEXPLORED = 'UNEXPLORED'
 const HIDE = 'HIDE'
 
 const GAME_OBJECTS = {
+  microgrid: {
+    display(state) {
+      return state.microgrid ? DISPLAY : HIDE
+    },
+    displayName: 'Microgrid',
+    x: 2,
+    y: 3,
+    actions() {
+      return []
+    }
+  },
   fire: {
     display(state) {
       return state.disaster ? DISPLAY : HIDE
@@ -70,6 +81,9 @@ const GAME_OBJECTS = {
   },
   store: {
     display(state) {
+      if (state.disaster) {
+        return HIDE
+      }
       return DISPLAY
     },
     displayName: 'General Store',
@@ -104,6 +118,9 @@ const GAME_OBJECTS = {
   },
   emptyField: {
     display(state) {
+      if (state.microgrid) {
+        return HIDE
+      }
       return state.emptyField ? DISPLAY : UNEXPLORED
     },
     displayName: 'Empty Field',
@@ -195,7 +212,7 @@ const GAME_OBJECTS = {
   // },
   escapeRoute: {
     display(state) {
-      return state.escapeRoute ? DISPLAY : HIDE
+      return state.escapeRoute ? DISPLAY : UNEXPLORED
     },
     displayName: 'Escape Route',
     x: 4,
@@ -263,7 +280,6 @@ export default class Game extends React.Component {
     let newMoney = state.money
     let stateUpdate = {}
     if (action === 'explore') {
-      newTime = time - 1
       stateUpdate = { [name]: true }
       this.setState({ selected: { name, x, y, mystery: false } })
     } else if (
@@ -272,18 +288,17 @@ export default class Game extends React.Component {
       stateUpdate = { ...stateUpdate, fireBreak: true }
     } else if (action.name === 'Petition for City Microgrid') {
       stateUpdate = { ...stateUpdate, microgrid: true }
-    } else {
-      newMoney = money - (action.cost == null ? 0 : action.cost)
-      newTime = time - (action.time == null ? 1 : action.time)
     }
+    newMoney = money - (action.cost == null ? 0 : action.cost)
+    newTime = time - (action.time == null ? 1 : action.time)
 
-    if (state.disaster && time <= 0) {
+    if (state.disaster && time <= 1) {
       alert("Time's up! Let's see how you did.")
       window.location = '/score'
       return
     }
-    if (time <= 0) {
-      this.props.updateState({ disaster: true, time: 5 })
+    if (time <= 1) {
+      this.props.updateState({ disaster: true, time: 3 })
       return
     }
 

@@ -246,6 +246,10 @@ export default class Game extends React.Component {
       const newMoney = money - (action.cost == null ? 0 : action.cost)
       this.props.updateState({ time: time - 1, money: newMoney })
     }
+    if (state.disaster && time <= 0) {
+      alert("Time's up! Let's see how you did.")
+      window.location = '/score'
+    }
   }
 
   render() {

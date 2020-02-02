@@ -37,7 +37,7 @@ export default props => {
       <ul>
         <li>
           {props.gameState.solar
-            ? props.gameState.batteries
+            ? props.gameState.battery
               ? 'Your home had power.  Your solar panels provided power, because you bought batteries as a backup energy storage device.'
               : "Your home has solar, but doesn't have batteries!  Solar needs batteries to work in a power outage.  It's great for the environment when you have power, but useless in a power outage unless you have energy storage."
             : "Your home didn't have any power."}

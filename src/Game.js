@@ -288,6 +288,10 @@ export default class Game extends React.Component {
       stateUpdate = { ...stateUpdate, fireBreak: true }
     } else if (action.name === 'Petition for City Microgrid') {
       stateUpdate = { ...stateUpdate, microgrid: true }
+    } else if (action.name === 'Buy solar') {
+      stateUpdate = { ...stateUpdate, solar: true }
+    } else if (action.name === 'Buy battery') {
+      stateUpdate = { ...stateUpdate, battery: true }
     }
     newMoney = money - (action.cost == null ? 0 : action.cost)
     newTime = time - (action.time == null ? 1 : action.time)

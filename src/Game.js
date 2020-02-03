@@ -305,12 +305,12 @@ export default class Game extends React.Component {
     newMoney = money - (action.cost == null ? 0 : action.cost)
     newTime = time - (action.time == null ? 1 : action.time)
 
-    if (state.disaster && time <= 1) {
+    if (state.disaster && newTime <= 1) {
       alert("Time's up! Let's see how you did.")
       this.props.updateState({ done: true })
       return
     }
-    const disasterUpdate = time <= 1 ? { disaster: true, time: 3 } : {}
+    const disasterUpdate = newTime <= 1 ? { disaster: true, time: 3 } : {}
 
     this.props.updateState({
       time: newTime,
